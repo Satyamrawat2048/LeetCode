@@ -15,31 +15,25 @@ public:
         : val(_val), left(_left), right(_right), next(_next) {}
 };
 */
-
 class Solution {
 public:
-    Node* connect(Node* root) 
-    {
-        if (!root)
-            return root;
+    Node* connect(Node* root) {
         queue<Node*> q;
-        q.push(root);
-        q.push(NULL);
-        while (q.size() > 1)
-        {
-            Node* curr = q.front();
-            q.pop();
-            if (!curr)
-            {
-                q.push(NULL);
-                continue;
+        if(root) q.push(root);
+        while(!q.empty()) {
+            int qSize = q.size();
+            Node* prev = nullptr;
+            for(int i = 0; i < qSize; i++) {
+                auto top = q.front();
+                q.pop();
+                top->next = prev;
+                prev = top;
+                if(top->right) q.push(top->right);
+                if(top->left) q.push(top->left);
             }
-            curr->next = q.front();
-            if (curr->left)
-                q.push(curr->left);
-            if (curr->right)
-                q.push(curr->right);
         }
+        
         return root;
+        
     }
 };
