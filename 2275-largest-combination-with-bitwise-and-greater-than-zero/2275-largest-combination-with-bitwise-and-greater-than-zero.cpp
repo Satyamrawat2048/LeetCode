@@ -4,6 +4,7 @@ public:
     {
         int ans= 0; 
         
+        // we are finding that for which bit we having digit 1 and how many such no are there(ans) with that bit 1
         for(int i=0 ; i< 32;i++)
             {  // Count how many numbers in nums have bit 1 at ith position.
             int curr=0 ;
