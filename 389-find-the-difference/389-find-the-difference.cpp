@@ -10,12 +10,19 @@ public:
     //     return t[i];
     // }
     
-        char findTheDifference(string s, string t) //O(n)
-        { 
-            char c=0 ;
+//         char findTheDifference(string s, string t) //O(n)
+//         { 
+//             char c=0 ;
             
-            for(int i=0 ; i< s.size(); i++)c^= s[i];
-            for(int i=0 ; i< t.size(); i++) c^=t[i];
-            return c;            
-        }
+//             for(int i=0 ; i< s.size(); i++)c^= s[i];
+//             for(int i=0 ; i< t.size(); i++) c^=t[i];
+//             return c;            
+//         }
+    char findTheDifference(string s, string t) 
+    {
+    s+=t; int c=0;
+    for(auto x: s) c^=x;
+    
+    return c;
+    }
 };
