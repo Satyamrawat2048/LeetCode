@@ -18,11 +18,23 @@ public:
 //             for(int i=0 ; i< t.size(); i++) c^=t[i];
 //             return c;            
 //         }
-    char findTheDifference(string s, string t) 
-    {
-    s+=t; int c=0;
-    for(auto x: s) c^=x;
     
-    return c;
-    }
+//     char findTheDifference(string s, string t)O(N) 
+//     {
+//     s+=t; int c=0;
+//     for(auto x: s) c^=x;
+    
+//     return c;
+//     }
+    
+        char findTheDifference(string s, string t)//O(N) using map
+        {
+            map<char, int> mp;
+            for(char ch:s) mp[ch]++;
+            
+            for(char ch:t) {if(mp[ch]==0) return ch; 
+                            else mp[ch]--;
+                           }
+            return 1;
+        }
 };
