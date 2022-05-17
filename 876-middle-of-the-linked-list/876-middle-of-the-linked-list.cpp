@@ -21,7 +21,6 @@ public:
         while(head && c--){
         head=head->next ;
         }
-        cout<< head->val ;
         return head;
     }
 };
