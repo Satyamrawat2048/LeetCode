@@ -1,4 +1,5 @@
 class Solution {
+    int a[31]={0};
 public:
     int fib(int n) {
        // if(n<2) return n ; O(2^n)
@@ -14,15 +15,20 @@ public:
         // return m[n];    
         
         //Bottom up dp  TC O(n) SC O(1)
+//         if(n<2) return n;
         
-        if(n<2) return n;
+//         int a=0, b=1, c=0 ;
+//         for(int i=1; i< n;i++)
+//         {   c=a+b ; 
+//             a=b; b=c ;
+//         }
+//         return c ;
+       // memoization recursive ;
         
-        int a=0, b=1, c=0 ;
-        for(int i=1; i< n;i++)
-        {
-            c=a+b ; 
-            a=b; b=c ;
-        }
-        return c ;
+        // O(n) using memoisation
+         if(n<2) return n ; 
+        if(a[n]!=0) return a[n];
+        return a[n]=fib(n-1) + fib(n-2) ;
+        
     }
 };
