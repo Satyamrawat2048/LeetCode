@@ -11,6 +11,7 @@ public:
     //     }
     //     return dp[n];
     
+    //bottom up dp with O(1) SC
     int minCostClimbingStairs(vector<int>& cost) {
     int n= cost.size();
     int a=0, b=0 , c=0 ;
