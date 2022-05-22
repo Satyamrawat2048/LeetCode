@@ -21,13 +21,7 @@ public:
               
             if(a==0) break ;
            }
-     for(int i: rem)
-        cout<<i<<endl;
-     
-           // for(int i=0 ; i< n ; i++)
-           // {
-           //     if(i==0)k++ ; 
-           // }
+
      return k;
     }
 };
