@@ -33,13 +33,22 @@ public:
      //    return head;
         
         //using 3 ptrs
-        ListNode*prev = NULL;
-        while(head != NULL){
-            ListNode*nxt = head->next;
-            head->next = prev;
-            prev = head;
-            head = nxt;
-        }
-        return prev;
+        // ListNode*prev = NULL;
+        // while(head != NULL){
+        //     ListNode*nxt = head->next;
+        //     head->next = prev;
+        //     prev = head;
+        //     head = nxt;
+        // }
+        // return prev;
+        
+        //recursion
+        if(!head || !(head->next))
+            return head ;
+        
+        ListNode*node= reverseList(head->next) ;
+        head->next->next= head ;
+        head->next= NULL ;
+        return node ;        
     }
 };
