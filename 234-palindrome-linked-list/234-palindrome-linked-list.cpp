@@ -24,7 +24,7 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-        slow = reverseList(slow);//reverse first half
+        slow = reverseList(slow);//reverse 2nd half
         while(slow != NULL){
             if(slow->val != head->val) return false;
             slow = slow->next;
