@@ -17,7 +17,7 @@ public:
         
         kth = ptr1;
         ptr1 = ptr1->next;
-        
+        // cout<<ptr2->val;
         while (ptr1) {
             ptr1 = ptr1->next;
             ptr2 = ptr2->next;
