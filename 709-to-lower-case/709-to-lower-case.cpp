@@ -1,7 +1,7 @@
 class Solution {
 public:
     string toLowerCase(string s) {
-        for(int i=0 ; i< s.size(); i++)if(s[i]>= 65 &&  s[i]<=90) s[i]+=32 ;
+                for(char &c: s)if(c>= 65 &&  c<=90) c+=32 ;
         
     return s;
     }
