@@ -55,38 +55,86 @@
 //            }
 //      return ans ;   
     
-class Solution
-{
-public:
-	vector<int> platesBetweenCandles(string s, vector<vector<int>> &queries)
-	{
-		vector<int> candlesIndex;
+// 	M3 >>>>
+// vector<int> platesBetweenCandles(string s, vector<vector<int>> &queries)
+// 	{
+// 		vector<int> candlesIndex;
 
-		for (int i = 0; i < s.length(); i++)
-		{
-			if (s[i] == '|')
-				candlesIndex.push_back(i);
-		} 
-		for (int i = 0; i < candlesIndex.size(); i++)
-		cout<<candlesIndex[i]<<' ';
-		cout<<endl;
+// 		for (int i = 0; i < s.length(); i++)
+// 		{
+// 			if (s[i] == '|')
+// 				candlesIndex.push_back(i);
+// 		} 
+// 		for (int i = 0; i < candlesIndex.size(); i++)
+// 		cout<<candlesIndex[i]<<' ';
+// 		cout<<endl;
 		
-		vector<int> ans;
-		for (auto q : queries)
-		{  
-			int firstCandleIndex = lower_bound(candlesIndex.begin(), candlesIndex.end(), q[0]) - candlesIndex.begin();
-			int lastCandleIndex = upper_bound(candlesIndex.begin(), candlesIndex.end(), q[1]) - candlesIndex.begin() - 1;
+// 		vector<int> ans;
+// 		for (auto q : queries)
+// 		{  
+// 			int firstCandleIndex = lower_bound(candlesIndex.begin(), candlesIndex.end(), q[0]) - candlesIndex.begin();
+// 			int lastCandleIndex = upper_bound(candlesIndex.begin(), candlesIndex.end(), q[1]) - candlesIndex.begin() - 1;
             
-			if (lastCandleIndex <= firstCandleIndex)
-			{
-				ans.push_back(0);
-				continue;
-			}
-// cout<<candlesIndex[lastCandleIndex] <<' '<< candlesIndex[firstCandleIndex]<<' '<< (lastCandleIndex - firstCandleIndex);
-			int tempAns = candlesIndex[lastCandleIndex] - candlesIndex[firstCandleIndex] - (lastCandleIndex - firstCandleIndex);
+// 			if (lastCandleIndex <= firstCandleIndex)
+// 			{
+// 				ans.push_back(0);
+// 				continue;
+// 			}
+// // cout<<candlesIndex[lastCandleIndex] <<' '<< candlesIndex[firstCandleIndex]<<' '<< (lastCandleIndex - firstCandleIndex);
+// 			int tempAns = candlesIndex[lastCandleIndex] - candlesIndex[firstCandleIndex] - (lastCandleIndex - firstCandleIndex);//Number of plates between candles will be number of elements between first and last candle minus number of candles between them.
 
-			ans.push_back(tempAns);
-		}
-		return ans;
-	}
+// 			ans.push_back(tempAns);
+// 		}
+// 		return ans;
+// 	}
+// M4 perfix sum
+class Solution
+{ public:
+    vector<int> platesBetweenCandles(string s, vector<vector<int>>& queries) {
+        int n = s.length();
+        vector<int> prev(n,n) , next(n,n) , prefixSum(n,0);
+        
+        for(int i=0;i<n;i++){
+           if(i==0){
+               if(s[i] == '|')
+                   prev[i] = i;
+               else
+                   prefixSum[i] = 1;
+           }
+            else{
+                if(s[i] == '|'){
+                    prev[i] = i;
+                    prefixSum[i] = prefixSum[i-1];
+                }
+                else{
+                    prev[i] = prev[i-1];
+                    prefixSum[i] = 1 + prefixSum[i-1];
+                }
+            }
+        }
+        
+        for(int i=n-1;i>=0;i--){
+            if(s[i] == '|')
+                next[i] = i;
+            
+            else if(i != n-1 and s[i] != '|')
+                next[i] = next[i+1];
+        }
+       
+        vector<int> ans;
+        for(auto q : queries){
+            int l = q[0];
+            int r = q[1];
+            
+            int i = next[l];
+            int j = prev[r];
+            
+            if(j<=i || j==n || i==n)
+                ans.push_back(0);
+            else{
+                ans.push_back(prefixSum[j] - prefixSum[i]);
+            }
+        }
+        return ans;
+    }
 };
