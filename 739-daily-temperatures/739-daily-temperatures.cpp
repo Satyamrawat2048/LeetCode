@@ -17,12 +17,11 @@ public:
         
         stack<int> stk;
         for(int i=0 ; i<n; i++)
-        { int curr= temp[i]; 
-         
-         while(!stk.empty() && temp[stk.top()]< curr)
+        {          
+         while(!stk.empty() && temp[stk.top()]< temp[i])
          {
-             int prev= stk.top(); stk.pop();
-             v[prev]= i-prev ;
+             v[stk.top()]= i-stk.top() ;
+              stk.pop();
          }
          stk.push(i);
          }
