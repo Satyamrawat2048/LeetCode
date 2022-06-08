@@ -6,13 +6,9 @@ public:
         
         while(i<j)
         {
-            if(isalpha(s[i]) && isalpha(s[j]))
-            {
-                swap(s[i++],s[j--]) ;
-            }
-            else if(isalpha(s[i])) j-- ;
-            else if(isalpha(s[j]) ) i++ ;
-            else i++ ,j--;
+            if(!isalpha(s[i])) i++ ;
+            else if(!isalpha(s[j]) )j--;
+            else swap(s[i++],s[j--]);
         }
         
    return s ;}
