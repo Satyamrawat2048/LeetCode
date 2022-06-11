@@ -6,10 +6,7 @@ public:
 
     sort(p.begin(),p.end()) ;
     for(int i=0 ; i<ns;i++ )
-    {  if(s[i]>=success) {ans[i]=ps; continue;}
-       
-      if((long long)s[i]*p[ps-1]< success){ ans[i]=0 ;continue; }
-      
+    {  
       long need = (success +s[i]-1)/s[i] ;
       auto it= lower_bound(p.begin(),p.end(),need);
       ans[i] = p.end()-it ;
