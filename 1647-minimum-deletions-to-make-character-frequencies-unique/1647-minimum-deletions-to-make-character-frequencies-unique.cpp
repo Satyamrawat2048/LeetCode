@@ -1,36 +1,28 @@
 class Solution {
+
 public:
-    int minDeletions(string s) {
-       vector<int> v(26); 
-    int n = s.size();
+  int minDeletions(string s)
+  {
+      vector<int> v(26,0); 
+      priority_queue<int> pq;
+
+    int n = s.size(),c=0;
     for (int i = 0; i < n; i++)
       v[s[i]-'a']++;
-        
-    int c= 0;
-    n=26 ;
-    sort(v.begin(),v.end());
-        
-    for (int i = n-2; i>=0 ;i--)
-    { if(v[i]==0 ) break ;
-     
-      if(v[i]>=v[i+1])
-      {
-          while(v[i]>=v[i+1])
-           v[i]-- ,c++;
-      }
-     
-     if(v[i]==0) 
-     {
-         int j =i-1 ; 
-         while(j>=0)
-         {  
-             if(!v[j]) return c ;
-             c+= v[j];
-             j--;
-         }
+    
+    for(int i=0 ; i<26 ; i++)
+     { if(v[i])  pq.push(v[i]) ;
      }
+
+    while (pq.size()!=1 && pq.top())
+    { int elmt = pq.top() ;
+    pq.pop();
      
+     cout<<elmt<<' '<<pq.top()<<' '<<c<<endl;
+
+     if(pq.top()==elmt){ pq.push(--elmt) ; c++;
+      }
     }
-    return c ;
-    }
+    return c;
+  }
 };
