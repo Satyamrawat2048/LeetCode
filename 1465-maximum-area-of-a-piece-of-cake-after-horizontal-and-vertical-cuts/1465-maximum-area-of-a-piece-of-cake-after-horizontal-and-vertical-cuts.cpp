@@ -5,20 +5,19 @@ public:
 
         vc.push_back(w) ;   vc.push_back(0) ;
         
-        vector<int> diff1(hc.size(),0), diff2(vc.size(),0) ;
-        
         sort(hc.begin(),hc.end());
         sort(vc.begin(),vc.end());
         
+        int maxdiff1=0,maxdiff2=0 ;
         for(int i=0 ; i<hc.size()-1; i++)
-        { diff1[i]= hc[i+1]- hc[i] ;
+        { maxdiff1= max(maxdiff1, hc[i+1]- hc[i]) ;
         }
         
         for(int i=0; i<vc.size()-1; i++)
-        { diff2[i]= vc[i+1]- vc[i] ;
+        { maxdiff2 = max(maxdiff2,vc[i+1]- vc[i] );
         }
         
         // for(int i:diff1) cout<<i<<" ";
-        return ((long long)*max_element(diff1.begin(),diff1.end()) * (*max_element(diff2.begin(),diff2.end()))%(1000000007) );
+        return ((long long) maxdiff1*maxdiff2)%(1000000007) ;
     }
 };
