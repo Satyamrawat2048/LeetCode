@@ -20,7 +20,7 @@ public:
              x= p[j] ; 
              j++ ;
              
-             if(st.find(x-1)==st.end()) ans =x-1 ;
+             if(st.find(x-1)==st.end()) ans =x-1 ;//checking if person timing-1 doesnt exist and update the answer
              c++ ;
          }
          if(c<cap){
