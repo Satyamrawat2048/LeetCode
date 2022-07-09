@@ -5,7 +5,7 @@ public:
         int ans=0;
         sort(b.begin(), b.end()) ;
         sort(p.begin(),p.end()) ;
-     set<int> st;
+     unordered_set<int> st;
         for(auto pi:p)
             st.insert(pi);
 
